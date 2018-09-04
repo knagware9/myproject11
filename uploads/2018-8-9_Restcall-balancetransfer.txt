@@ -1,0 +1,40 @@
+username=Jim&orgName=Org1'
+{"success":true,"secret":"","message":"Jim enrolled Successfully","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzA1NjYxMzEsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1MzA1MzAxMzF9.8wcZRLJk_VJknN3Q-aqXvn9UUZRIrKsOx8mUuBgsNNo
+
+curl -s -X POST \
+  http://localhost:4000/channels \
+  -H "authorization: Bearer <"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzA1NjY0MzgsInVzZXJuYW1lIjoiS2ltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1MzA1MzA0Mzh9.HG3lQXmZD2SKewh4knaTbZVpAYX7YOePToaQoypgNo0">" \
+  -H "content-type: application/json" \
+  -d '{
+	"channelName":"mychannel",
+	"channelConfigPath":"../artifacts/channel/mychannel.tx"
+}'
+
+curl -s -X POST   http://localhost:4000/channels/mychannel/peers   -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzA1NjkyNDcsInVzZXJuYW1lIjoiVmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1MzA1MzMyNDd9.OAY9oTj2wTYiQZCEdCtTkL9jZ8OPBct6y_OiZp-rkTw"   -H "content-type: application/json"   -d '{
+"peers": ["peer0.org1.example.com","peer1.org1.example.com"]
+
+
+curl -s -X POST \
+  http://localhost:4000/chaincodes \
+  -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzA1NjkyNDcsInVzZXJuYW1lIjoiVmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1MzA1MzMyNDd9.OAY9oTj2wTYiQZCEdCtTkL9jZ8OPBct6y_OiZp-rkTw" \
+  -H "content-type: application/json" \
+  -d '{
+	"peers": ["peer0.org1.example.com","peer1.org1.example.com"],
+	"chaincodeName":"mycc",
+	"chaincodePath":"github.com/example_cc/go",
+	"chaincodeType": "golang",
+	"chaincodeVersion":"v0"
+}'
+
+curl -s -X POST \
+  http://192.168.97.246:4000/channels/mgrchannel/chaincodes/mycc \
+  -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MzU1OTQ1NzMsInVzZXJuYW1lIjoiQm9laW5nVVMiLCJvcmdOYW1lIjoib3JnMSIsImlhdCI6MTUzMTk5NDU3M30.KxEK-prn-rp2M8EpUCTVWeSx4Ml0rFEvWC8GuqoeYbc
+  -H "content-type: application/json" \
+  -d '{
+	"fcn":"transfer",
+	"args":["B1234","Boeing-USA","Active"]
+}'
+
+
+
+export PATH=/home/kamlesh/work/src/github.com/hyperledger/fabric-samples/bin:$PATH

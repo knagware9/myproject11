@@ -1,0 +1,151 @@
+wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz
+sudo tar -xzf postman.tar.gz -C /opt
+rm postman.tar.gz
+sudo ln -s /opt/Postman/Postman
+
+
+docker kill $(docker ps -q)
+docker rm $(docker ps -aq)
+docker rmi $(docker images dev-* -q)
+
+
+Boeing Certification use case
+
+FAA -Federal Aviation Administration
+
+Airmen Certification
+certificate number, or date of birth on the FAA website.
+    Form 8610-2 Mechanics, Repairman and Parachute Riggers
+    Form 8400-3 (PDF, 434 KB) Flight Engineers, Flight Navigators, Aircraft Dispatchers, and Control Tower Operators
+    Form 8610-1 Mechanic's Application for Inspection Authorization
+    Form 8710-1 Airman Certificate and/or Rating Application
+    Form 8710-11 Airman Certificate and/or Rating Application — Sport Pilot
+
+
+5. Certificates Held by Applicant 
+A. 
+Pilot Commercial 
+Flight Instructor 
+Private 
+B. Flight Navigator 
+E. Ground Inspector 
+Airline Transport 
+C. Control Tower Operator 
+F. Aircraft Dispatcher 
+
+D. Flight Engineer 
+G. Mecha
+
+EASA licence(UK)
+
+Category A Licence : A Ramp or Line Maintenance Certifying Mechanic is a person who is qualified to work on operational aircraft performing relatively minor maintenance tasks and replacement of parts that are required between major service overhauls and to subsequently certify these tasks; this work is generally done while the aircraft is in service, during turnarounds or overnight.
+
+Category B License :A Base Maintenance Certifying Technician is a person who is qualified to work on aircraft that require more complex maintenance tasks or have been withdrawn from service for routine periodic servicing or major overhauls and re-fits and who can then subsequently certify his/her own and other work. A Category B Licence is required for this. It is attained after graduation from a 2 year approved course and after 2 years of appropriate certified experience. Category B licences are further divided into specialist skills such as mechanical or avionic. The alternative route to this licence is the self-improver, which can be achieved by self-study or attending a modular course. In this case 5 years of appropriate experience is required.
+
+
+ Aircraft Maintenance Licence (AML) in Categories A1, A2, A3, B1.1, B1.2, B1.3, & B2
+
+
+    B1 – mechanical (aircraft structure, powerplant and mechanical and electrical systems) which is divided into four sub-categories.
+    B2 – avionics (communications, navigation, radar, instrument and electrical systems).
+
+
+
+Basic Maintenance Engineer's Certificate (BAMEC)(AME licences are are issued by DGCA,India)
+
+A : Light Aeroplanes (below 5,700 kg all up weight)
+
+ Heavy Aeroplanes(5,700 kg all up weight & above)
+
+- Rotary Wing aircraft (helicopters) with 3000 kg all up and above
+
+- Gliders
+ 
+
+B  : Overhaul of aeroplanes
+
+  Overhaul of gliders
+
+ 
+
+C : Piston engines
+
+- Jet engines
+
+ 
+
+A&C Helicopters with all up weight below 3000 kg
+
+D Overhaul of Piston engines
+
+E Electrical System of Heavy Aircraft
+
+I Instrument System of Heavy Aircraft
+
+R Radio Navigation System
+
+V Avionics System of sophisticated aircraft
+
+X Overhaul of Auto Pilot (Light Aircraft)
+
+
+https://www.airservicetraining.co.uk/aircraft-engineering-training/become-an-aircraft-engineer
+http://dgca.nic.in/circular/aac2_1998.htm
+
+
+POC Draft Development Plan:
+
+1. Create 3 Org (1 peer each),3 CA ,one Orderer ,3 Couch DB  Containers
+
+2. Blockchain Network hyperledger Fabric 1.1.0(latest is 1.2.0 but there are bugs so will use 1.1.0)
+
+3. Chaincode design: Employee Information fields,  chaincode Invoke & Query functions
+
+EmpId,Name,Date of Birth,SSN,NATIONALITY,Sex/Gender,Date of Joining,Designation, Division, Boeing-  Subsidiary,CertificationName,Certification-completion,Year-of-exp,Email
+
+
+
+
+Here Employee is asset ,and employee Information update, certification update,employee transfer transactions are asset transfer transactions which need to written in chaincode(Smart contract)
+
+Invoke functions
+
+    Onboard Employee
+    Update Employee
+    Employee Certification(Add/Update/Revoke)
+    Employee Transfer(One subsidiary to another subsidiary)
+
+Query functions:
+
+    View Employee history
+    View Employee details(able to view in all subsidiary)
+
+
+4. Install & deploy above created chaincode to above created Blockchain Network
+
+5. Write REST APIs for the above chaincode
+
+6. Build UI application design & Development to consume REST API
+
+7. Deploy Blockchain network/ UI application to any Cloud (Azure,AWS)
+
+
+FAA Aircraft Certification  ??? Its different thing 
+
+
+http://dgca.nic.in/aircraft/air-ind.htm
+
+DGCA grants Certificate of Approval to organizations engaged in the following activities:
+
+Manufacturing 
+
+Category A 
+
+Workshop process and inspection 	Category B 
+Maintenance Organisations	Category C 
+Test Laboratories	Category D 
+Fuel Lubricants and special products 	Category E 
+Stores and Distribution	Category F 
+Training Schools	Category G 
+
+

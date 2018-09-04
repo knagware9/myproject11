@@ -1,0 +1,10 @@
+.nodata{
+    position: relative;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    color: #ccc;
+}
+.nodata img{ 
+    width: 100px;
+    opacity: 0.1;
+}

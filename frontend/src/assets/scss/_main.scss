@@ -1,0 +1,101 @@
+#root {
+    height: 100%;
+}
+
+.authForm-container {
+    height: 100%;
+    &.react-reveal {
+        z-index: 1;
+        position: relative;
+    }
+}
+
+.loginBg {
+    height: 100%;
+    background: url('../images/bg.jpg') no-repeat center center;
+    background-size: cover;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(#000, 0.3);
+        z-index: 1;
+    }
+}
+
+.switch-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.switch-wrapper>div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container {
+    width: 100%;
+}
+
+.Toastify__toast--success {
+    background-color: $success !important;
+}
+
+.main {
+    height: 100%;
+    position: relative;
+    display: table;
+    width: 100%;
+    @media(max-width: map-get($map: $grid-breakpoints, $key: md)) {
+        table-layout: fixed;
+    }
+    .main_cell {
+        display: table-cell;
+    }
+    .main_row {
+        display: table-row;
+        &:first-child {
+            height: 53px;
+        }
+        &:last-child {
+            height: 40px;
+        }
+    }
+}
+
+.center-preloader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.toploading_bar {
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: inherit;
+        box-shadow: 0 0 10px #5d5d5d, 0 0 5px #5d5d5d;
+        opacity: 0.5;
+        right: 0;
+    }
+}
+
+.table-fixed-layout {
+    @media(min-width: map-get($map: $grid-breakpoints, $key: md)) {
+        table-layout: fixed;
+    }
+}
+
+.loader-bg{
+    background: linear-gradient(90deg, $blue 0%, $indigo 100%) !important;
+}

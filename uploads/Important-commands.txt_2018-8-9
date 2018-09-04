@@ -1,0 +1,29 @@
+https://medium.com/coinmonks/hyperledger-fabric-in-practice-part-1-main-components-and-running-them-locally-aa4b805465fa
+
+export GOPATH=~/go
+export GOROOT=/usr/local/go
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+
+
+
+cd $GOPATH
+mkdir src
+cd src
+mkdir github.com
+cd github.com
+mkdir hyperledger
+cd hyperledger\
+
+
+git clone https://github.com/hyperledger/fabric.git
+sudo apt install libtool libltdl-dev
+
+Now we are ready to build Hyperledger Fabric:
+
+cd fabric
+make release-all
+
+… and wait ca. 5 minutes. Next we create Docker images for Hyperledger Fabric:
+
+make docker

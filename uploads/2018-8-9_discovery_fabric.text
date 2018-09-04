@@ -1,0 +1,8 @@
+
+
+actually the best way is to let `discovery` do the work, define one peer and a channel then call discovery on the channel, giving you all the peers on the channel.
+```
+const channel = client.newChanel('mychannel');
+const peer = client.newPeer(peerUrl, opts);
+channel.initialize({discovery:true, target: peer});
+const peers = channel.getPeers();
