@@ -28,6 +28,8 @@ var jwt = require('jsonwebtoken');
 var bearerToken = require('express-bearer-token');
 var cors = require('cors');
 const formidable = require('formidable');
+var hashFiles = require('hash-files');
+var path = require("path");
 //var multipart = require('connect-multiparty');
 //var multipartMiddleware = multipart();
 //var multer = require('multer');
@@ -331,13 +333,8 @@ app.post('/channels/:channelName/chaincodes/:chaincodeName', function(req, res) 
 	form.type = 'multipart';
 	form.hash = 'sha1';
 	var certifile1;
-    form.on('fileBegin', function (name, file){
-		var date1 = new Date().toLocaleDateString();
-		file.path = __dirname + '/uploads/'  + date1 +  "_" + file.name ;
-		//console.log(__dirname);
-		 var certifile = '192.168.97.246:4000/' + 'uploads' + date1 + "_" + file.name;
-		 certifile1 = certifile;
-	});
+	var filepath='';
+    
 	form.on('field', function(name, value) {
 		
 		var arr = JSON.parse(value);
@@ -350,27 +347,39 @@ app.post('/channels/:channelName/chaincodes/:chaincodeName', function(req, res) 
 		 args.empid  = 'BG'+ uniqueId;
 		};
 		
-		args.certipath   = "192.168.97.246:4000/uploads/certifiles";
-		args.certihash   = Math.random().toString(36).substr(2, 30);
-		//args.certihash = "0x e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-		var extractedValues = Object.values(args)
-		//console.log(a);
-		 console.log(extractedValues);
-		logger.debug('fcn  : ' + fcn);
-		logger.debug('args  : ' + args);
-		if (!fcn) {
-	    	res.json(getErrorMessage('\'fcn\''));
-      	return;
-	      }
-	   if (!args) {
-		res.json(getErrorMessage('\'args\''));
-		return;
-	           }
-
-	invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, extractedValues, req.username, req.orgname)
-	 .then(function(message) {
-		res.send(message);
-	  });
+		
+		
+		form.on('fileBegin', function (name, file){
+			var date1 = new Date().toLocaleDateString();
+			file.path = './uploads/'  + date1 +  "_" + file.name ;
+			args.certipath   = '192.168.97.246:4000/uploads/'  + date1 +  "_" + file.name;
+			var options = {
+				files :[path.resolve(file.path)],
+				algorithm:'sha256'
+			}
+			hashFiles(options, function(error, hash) {
+				args.certihash   = hash;
+			//args.certihash = "0x e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+			var extractedValues = Object.values(args)
+			//console.log(a);
+			 console.log(extractedValues);
+			logger.debug('fcn  : ' + fcn);
+			logger.debug('args  : ' + args);
+			if (!fcn) {
+				res.json(getErrorMessage('\'fcn\''));
+			  return;
+			  }
+		   if (!args) {
+			res.json(getErrorMessage('\'args\''));
+			return;
+				   }
+	
+		invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, extractedValues, req.username, req.orgname)
+		 .then(function(message) {
+			res.send(message);
+		  });
+			});
+		});
 	});
 
 	form.on('file', function (name, file){

@@ -1,0 +1,45 @@
+@font-face {
+    font-family: "fonticon";
+    src: url("../fonts/fonticon.ttf") format('truetype');
+    src: url('../fonts/fonticon.eot?#iefix') format('eot'),
+    url('../fonts/fonticon.woff2') format('woff2'),
+    url('../fonts/fonticon.woff') format('woff'),
+    url('../fonts/fonticon.ttf') format('truetype'),
+    url('../fonts/fonticon.svg#fonticon') format('svg');
+}
+
+@mixin styles{
+    font-family: "fonticon";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+    text-decoration: none;
+    text-transform: none;
+    vertical-align: baseline;
+}
+
+[class^="icon-"], [class*=" icon-"]{
+    @include styles;
+}
+
+
+$svg-font-map: ("avatar":"\E001", "calendar":"\E002", "command":"\E003", "contact":"\E004", "door-handle":"\E005", "heart":"\E006", "key-1":"\E007", "key":"\E008", "magnifier":"\E009", "typing":"\E00A", "user":"\E00B", );
+
+@mixin icon($filename, $insert: before, $extend: true) {
+    &::#{$insert}{ content:map-get($svg-font-map, $filename); }
+}
+
+.icon-avatar { @include icon(avatar); }
+.icon-calendar { @include icon(calendar); }
+.icon-command { @include icon(command); }
+.icon-contact { @include icon(contact); }
+.icon-door-handle { @include icon(door-handle); }
+.icon-heart { @include icon(heart); }
+.icon-key-1 { @include icon(key-1); }
+.icon-key { @include icon(key); }
+.icon-magnifier { @include icon(magnifier); }
+.icon-typing { @include icon(typing); }
+.icon-user { @include icon(user); }

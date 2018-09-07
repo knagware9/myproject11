@@ -33,6 +33,9 @@
     "fabric-client": "^1.0.0",
     "fs-extra": "^2.0.0",
     "jsonwebtoken": "^7.3.0",
-    "log4js": "^0.6.38"
+    "log4js": "^0.6.38",
+    "crypto": "^1.0.1",
+    "fs": "0.0.1-security",
+    "hash-files": "^1.1.1"
   }
 }
